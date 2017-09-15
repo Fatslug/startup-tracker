@@ -1,0 +1,51 @@
+<form (submit)="submitStartup()">
+	<label for="companyName">Company Name: </label>
+	<input name="companyName" type="text" [(ngModel)]="startup.companyName" #companyName="ngModel" />
+	<br /><br />
+
+	<label for="fundingStage">Funding Stage: </label>
+	<select name="fundingStage" [(ngModel)]="startup.fundingStage" #fundingStage="ngModel">
+		<option value="Early">Early</option>
+		<option value="Pre-Seed">Pre-Seed</option>
+		<option value="Seed">Seed</option>
+		<option value="Series A">Series A</option>
+		<option value="Series B">Series B</option>
+		<option value="Series C">Series C</option>
+	</select>
+	<br /><br />
+
+	<input type="checkbox" name="engaged" [(ngModel)]="startup.engaged" #engaged="ngModel"/> <label for="engaged"> Has this startup been engaged?</label>
+	<br /><br />
+
+	<label for="summary">Summary of company: </label>
+	<textarea name="summary" [(ngModel)]="startup.summary" #summary="ngModel"></textarea>
+	<br /><br />
+
+	<label for="website">Company Website: </label>
+	<input type="text" name="website" [(ngModel)]="startup.website" #website="ngModel" />
+	<br /><br />
+
+	<label for="potentialApplications">Potential applications for company tech: </label>
+	<div *ngFor="let application of startup.potentialApplications; index as i; last as isLast; first as isFirst">
+		-> <input type="text" name="application--{{ i }}" [(ngModel)]="application.value" #potentialApplications />
+		<button type="button" *ngIf="!isFirst" (click)="removeApplication(i)"> - </button>
+		<button type="button" *ngIf="isLast" (click)="addApplication()"> + </button>
+	</div>
+	<br /><br />
+
+	<label for="securityLevel">Security Level: </label>
+	<select name="securityLevel" [(ngModel)]="startup.securityLevel" #securityLevel="ngModel">
+		<option value="1">Everyone can see this company</option>
+		<option value="2">Only certain people can see this company</option>
+		<option value="3">Only I can see this company</option>
+	</select>
+	<br /><br />
+
+	<label for="comments">Comments: </label>
+	<div *ngFor="let comment of startup.comments">
+		{{ comment.title }}
+	</div>
+	<br /><br />
+
+	<button type="submit">Submit startup</button>
+</form>
