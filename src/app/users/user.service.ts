@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './user';
 
 import { deserialize, serialize } from 'serializer.ts/Serializer';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/Observable/of';
 
 @Injectable()
 export class UserService {
@@ -18,7 +20,7 @@ export class UserService {
 		// Is there a user in our service?
 		// Are these users the same?
 		const userCookie = JSON.parse(localStorage.getItem('currentUser'));
-		if (userCookie && this.currentUser && (userCookie.userID === this.currentUser.userID)) {
+		if (userCookie && this.currentUser && (userCookie.userID === this.currentUser._id)) {
 			return true;
 		} else {
 			localStorage.removeItem('currentUser');
@@ -27,16 +29,22 @@ export class UserService {
 		}
 	}
 
-	doLogin(username, password): void {
+	doLogin(username, password): Promise<boolean> {
 		let headers = new HttpHeaders();
 		headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
 		headers = headers.append('Content-Type', 'application/json');
-		this.http.post<User>('http://localhost:8000/auth/basic', {
-			type: 'login'
-		}, {
-			headers: headers
-		}).subscribe(user => {
-			this.setCurrentUser(user);
+		return new Promise((resolve, reject) => {
+			this.http.post<User>('http://localhost:8000/auth/basic', {
+				type: 'login'
+			}, {
+				headers: headers
+			}).subscribe(user => {
+				if (user._id) {
+					resolve(this.setCurrentUser(user));
+				} else {
+					reject('Invalid username/password');
+				}
+			});
 		});
 	}
 
@@ -46,7 +54,6 @@ export class UserService {
 			username: username,
 			password: password
 		}).subscribe(user => {
-			console.log(user);
 			this.setCurrentUser(user);
 		});
 	}
@@ -60,17 +67,16 @@ export class UserService {
 		return new Promise((resolve, reject) => {
 			this.http.get<User>('http://localhost:8000/user/' + id).subscribe(res => {
 				const user = res;
-				console.log('User found: ', user);
 				this.currentUser = user;
 				resolve(user);
 			});
 		});
 	}
 
-	setCurrentUser(user: User) {
+	setCurrentUser(user: User): boolean {
 		this.currentUser = user;
-		console.log(user);
-		localStorage.setItem('currentUser', JSON.stringify({ userID: user._id, timestamp: new Date()}));
+		localStorage.setItem('currentUser', JSON.stringify({ userID: user._id, timestamp: new Date() }));
+		return true;
 	}
 
 	getCurrentUser(): User {

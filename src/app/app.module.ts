@@ -20,8 +20,8 @@ export const ROUTES: Routes = [
 	{ path: '', component: StartupListComponent, canActivate: [CanActivateAuthGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	{ path: 'startup/add', component: StartupFormComponent },
-	{ path: 'startups', component: StartupListComponent }
+	{ path: 'startup/add', component: StartupFormComponent, canActivate: [CanActivateAuthGuard] },
+	{ path: 'startups', component: StartupListComponent, canActivate: [CanActivateAuthGuard] }
 ];
 
 @NgModule({

@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
 
 	login(): void {
 		console.log('Logging in...');
-		this.userService.doLogin(this.username, this.password);
+		this.userService.doLogin(this.username, this.password).then(result => {
+			this.router.navigateByUrl('/startups');
+		});
 	}
 
 	logout(): void {
