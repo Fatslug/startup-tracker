@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { User } from '../users/user.service';
+import { User } from '../users/user';
 
 export interface Comment {
 	title: string;
