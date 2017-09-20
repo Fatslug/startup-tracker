@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+	firstName: string;
+	lastName: string;
 	username: string;
 	password: string;
 
@@ -17,7 +19,7 @@ export class RegisterComponent implements OnInit {
 	}
 
 	register(): void {
-		this.userService.doRegister(this.username, this.password);
+		this.userService.doRegister(this.username, this.password, this.firstName, this.lastName);
 	}
 
 }

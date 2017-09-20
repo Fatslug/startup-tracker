@@ -1,3 +1,33 @@
-<p>
-  startup-details works!
-</p>
+<div *ngIf="startup">
+	<h1>{{ startup.companyName }}</h1>
+	<a [routerLink]="['/startups/update', startup._id]">Edit</a> -- <a [routerLink]="['/startups/delete', startup._id]">Delete</a><br />
+
+	<b>Funding Stage:</b> {{ startup.fundingStage }}<br />
+	<b>Engaged?:</b> {{ startup.engaged }}<br />
+	<b>Type of Tech:</b> {{ startup.typeOfTech }}<br />
+	<b>Summary:</b> {{ startup.summary }}<br />
+	<b>Website:</b> <a href="{{ startup.website }}" target="_blank">{{ startup.website }}</a><br />
+	<b>Potential Applications:</b>
+	<ul>
+		<li *ngFor="let application of startup.potentialApplications">
+			{{ application.value }}
+		</li>
+	</ul>
+	<b>Security Level:</b> {{ startup.securityLevel }}<br /><br />
+
+	<b>Created:</b> {{ startup.createdTimestamp | date:'fullDate' }}<br />
+	<b>Modified:</b> {{ startup.modifiedTimestamp | date:'fullDate' }}<br />
+	<b>Author:</b> {{ startup.author.name }}<br /><br />
+
+	<form (ngSubmit)="updateStartup()">
+		<label for="comments">Comment: </label><br />
+		Title: <input type="text" name="commmentTitle" [(ngModel)]="comment.title" /><br />
+		Body: <textarea name="commentBody" [(ngModel)]="comment.body" #commentBody></textarea><br /><br />
+		<button type="submit">Add comment</button>
+	</form>
+
+	<div *ngFor="let comment of startup.comments">
+		<h2>{{ comment.title }}</h2>
+		<p>{{ comment.body }}</p>
+	</div>
+</div>

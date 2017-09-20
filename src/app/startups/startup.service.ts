@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { User } from '../users/user';
 
-export interface Comment {
+export class Comment {
 	title: string;
 	body: string;
 	author: User;
@@ -13,6 +13,7 @@ export interface Comment {
 }
 
 export class Startup {
+	_id: string;
 	companyName: string;
 	fundingStage: string;
 	engaged: boolean;
@@ -24,7 +25,7 @@ export class Startup {
 	comments: Comment[];
 	createdTimestamp: Date;
 	modifiedTimestamp: Date;
-	Author: User;
+	author: User;
 }
 
 @Injectable()
@@ -33,12 +34,27 @@ export class StartupService {
 	constructor(private http: HttpClient) {
 	}
 
-	addStartup(startup: Startup): Observable<Startup>{
+	addStartup(startup: Startup): Observable<Startup> {
+		console.log('Adding startup: ', startup);
 		return this.http.post<Startup>('http://localhost:3000/startups/', startup);
 	}
 
-	getAllStartups(): Observable<Startup> {
-		return this.http.get<Startup>('http://localhost:3000/startups/');
+	updateStartup(startup: Startup): Observable<Startup> {
+		console.log('Updating startup: ', startup);
+		return this.http.put<Startup>('http://localhost:3000/startups/' + startup._id, startup);
+	}
+
+	deleteStartup(startup: Startup): Observable<boolean> {
+		console.log('Deleting startup: ', startup);
+		return this.http.delete<boolean>('http://localhost:3000/startups/' + startup._id);
+	}
+
+	getStartup(startupID: string) {
+		return this.http.get<Startup>('http://localhost:3000/startups/' + startupID);
+	}
+
+	getAllStartups(): Observable<Startup[]> {
+		return this.http.get<Startup[]>('http://localhost:3000/startups/');
 	}
 
 }

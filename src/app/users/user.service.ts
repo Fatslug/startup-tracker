@@ -48,9 +48,11 @@ export class UserService {
 		});
 	}
 
-	doRegister(username, password): void {
+	doRegister(username, password, firstName, lastName): void {
 		this.http.post<User>('http://localhost:8000/register', {
 			type: 'register',
+			firstName: firstName,
+			lastName: lastName,
 			username: username,
 			password: password
 		}).subscribe(user => {

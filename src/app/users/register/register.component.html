@@ -1,6 +1,14 @@
 <form (onSubmit)="register()">
     <div>
-      <label>Username:</label>
+      <label>First Name:</label>
+      <input type="text" name="firstName" [(ngModel)]="firstName" />
+    </div>
+    <div>
+      <label>Last Name:</label>
+      <input type="text" name="lastName" [(ngModel)]="lastName" />
+    </div>
+    <div>
+      <label>Email:</label>
       <input type="text" name="username" [(ngModel)]="username" />
     </div>
     <div>

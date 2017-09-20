@@ -7,20 +7,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { StartupListComponent } from './startups/startup-list/startup-list.component';
 import { StartupFormComponent } from './startups/startup-form/startup-form.component';
 import { StartupDetailsComponent } from './startups/startup-details/startup-details.component';
 import { StartupItemComponent } from './startups/startup-item/startup-item.component';
-
-import { HttpClientModule } from '@angular/common/http';
+import { StartupDeleteComponent } from './startups/startup-delete/startup-delete.component';
 
 export const ROUTES: Routes = [
 	{ path: '', component: StartupListComponent, canActivate: [CanActivateAuthGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	{ path: 'startup/add', component: StartupFormComponent, canActivate: [CanActivateAuthGuard] },
+	{ path: 'startup/:id', component: StartupDetailsComponent, canActivate: [CanActivateAuthGuard] },
+	{ path: 'startups/add', component: StartupFormComponent, canActivate: [CanActivateAuthGuard] },
+	{ path: 'startups/update/:id', component: StartupFormComponent, canActivate: [CanActivateAuthGuard] },
+	{ path: 'startups/delete/:id', component: StartupDeleteComponent, canActivate: [CanActivateAuthGuard] },
 	{ path: 'startups', component: StartupListComponent, canActivate: [CanActivateAuthGuard] }
 ];
 
@@ -32,7 +35,8 @@ export const ROUTES: Routes = [
 		StartupDetailsComponent,
 		StartupItemComponent,
 		LoginComponent,
-		RegisterComponent
+		RegisterComponent,
+		StartupDeleteComponent
 	],
 	imports: [
 		BrowserModule,

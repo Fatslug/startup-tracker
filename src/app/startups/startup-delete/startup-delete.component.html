@@ -1,0 +1,5 @@
+<div *ngIf="startup">
+	Are you sure you want to delete this startup?<br />
+	<h1>{{ startup.companyName }}</h1>
+	<button (click)="confirm()" type="button">Yes</button><button (click)="reject()" type="button">No</button>
+</div>
