@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdToolbarModule, MdButtonModule, MdGridListModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { StartupListComponent } from './startups/startup-list/startup-list.component';
@@ -42,7 +44,11 @@ export const ROUTES: Routes = [
 		BrowserModule,
 		FormsModule,
 		HttpClientModule,
-		RouterModule.forRoot(ROUTES)
+		RouterModule.forRoot(ROUTES),
+		BrowserAnimationsModule,
+		MdToolbarModule,
+		MdButtonModule,
+		MdGridListModule
 	],
 	providers: [
 		StartupService,

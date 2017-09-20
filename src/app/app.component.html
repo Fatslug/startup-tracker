@@ -1,6 +1,20 @@
-<nav>
-    <a routerLink="/startups/add" routerLinkActive="active">Add a Startup</a>
-    <a routerLink="/startups" routerLinkActive="active">View Startups</a>
-</nav>
+<md-toolbar color="primary">
+    <nav>
+        <a class="nav-button" md-button routerLink="/">Home</a>
+        <!-- This fills the remaining space of the current row -->
+        <!-- <span class="example-fill-remaining-space"></span> -->
+        <a class="nav-button" md-button routerLink="/startups/add">Add Startup</a>
+        <a class="nav-button" md-button routerLink="/startups">View Startups</a>
+    </nav>
+</md-toolbar>
+
+<md-grid-list cols="12" rowHeight="100px">
+	<md-grid-tile
+		[colspan]="8"
+		[rowspan]="1"
+		[style.background]="lightblue">
+		1
+	</md-grid-tile>
+</md-grid-list>
 
 <router-outlet></router-outlet>
