@@ -1,14 +1,18 @@
-<form (onSubmit)="login()">
-	<div>
-		<label>Username:</label>
-		<input type="text" name="username" [(ngModel)]="username" />
-	</div>
-	<div>
-		<label>Password:</label>
-		<input type="password" name="password" [(ngModel)]="password" />
-	</div>
-	<div>
-		<button type="submit" (click)="login()">Log in</button>
-		<a routerLink="/register" routerLinkActive="active">Register</a>
-	</div>
-</form>
+<div style="margin-top: -50px;">
+	<form (onSubmit)="login()">
+		<div>
+			<md-form-field>
+				<input mdInput placeholder="Email" name="username" [(ngModel)]="username">
+			</md-form-field>
+		</div>
+		<div>
+			<md-form-field>
+				<input mdInput type="password" placeholder="Password" name="password" [(ngModel)]="password">
+			</md-form-field>
+		</div>
+		<div>
+			<button md-raised-button color="primary" type="submit" (click)="login()">Login</button>
+			<button md-button color="accent" routerLink="/register" routerLinkActive="active">Register</button>
+		</div>
+	</form>
+</div>

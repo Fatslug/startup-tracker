@@ -9,7 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdToolbarModule, MdButtonModule, MdGridListModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+// MATERIAL IMPORTS
+import {
+	MdToolbarModule,
+	MdButtonModule,
+	MdGridListModule,
+	MdInputModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { StartupListComponent } from './startups/startup-list/startup-list.component';
@@ -46,9 +54,13 @@ export const ROUTES: Routes = [
 		HttpClientModule,
 		RouterModule.forRoot(ROUTES),
 		BrowserAnimationsModule,
+		FlexLayoutModule,
+
+		// MATERIAL IMPORTS
 		MdToolbarModule,
 		MdButtonModule,
-		MdGridListModule
+		MdGridListModule,
+		MdInputModule
 	],
 	providers: [
 		StartupService,
