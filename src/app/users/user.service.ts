@@ -4,7 +4,6 @@ import { User } from './user';
 
 import { deserialize, serialize } from 'serializer.ts/Serializer';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/Observable/of';
 
 @Injectable()
 export class UserService {
