@@ -33,7 +33,7 @@ export class UserService {
 		headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
 		headers = headers.append('Content-Type', 'application/json');
 		return new Promise((resolve, reject) => {
-			this.http.post<User>('http://localhost:8000/auth/basic', {
+			this.http.post<User>('https://social-user-services.herokuapp.com/auth/basic', {
 				type: 'login'
 			}, {
 				headers: headers
@@ -48,7 +48,7 @@ export class UserService {
 	}
 
 	doRegister(username, password, firstName, lastName): void {
-		this.http.post<User>('http://localhost:8000/register', {
+		this.http.post<User>('https://social-user-services.herokuapp.com/register', {
 			type: 'register',
 			firstName: firstName,
 			lastName: lastName,
@@ -66,7 +66,7 @@ export class UserService {
 
 	getUserById(id: string): Promise<User> {
 		return new Promise((resolve, reject) => {
-			this.http.get<User>('http://localhost:8000/user/' + id).subscribe(res => {
+			this.http.get<User>('https://social-user-services.herokuapp.com/user/' + id).subscribe(res => {
 				const user = res;
 				this.currentUser = user;
 				resolve(user);
@@ -86,7 +86,7 @@ export class UserService {
 
 	getAllUsers() {
 		return new Promise((resolve, reject) => {
-			this.http.get('http://localhost:8000/users').subscribe(res => {
+			this.http.get('https://social-user-services.herokuapp.com/users').subscribe(res => {
 				console.log(res);
 				resolve(res);
 			});

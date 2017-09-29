@@ -36,25 +36,25 @@ export class StartupService {
 
 	addStartup(startup: Startup): Observable<Startup> {
 		console.log('Adding startup: ', startup);
-		return this.http.post<Startup>('http://localhost:3000/startups/', startup);
+		return this.http.post<Startup>('https://trakky-services.herokuapp.com/startups/', startup);
 	}
 
 	updateStartup(startup: Startup): Observable<Startup> {
 		console.log('Updating startup: ', startup);
-		return this.http.put<Startup>('http://localhost:3000/startups/' + startup._id, startup);
+		return this.http.put<Startup>('https://trakky-services.herokuapp.com/startups/' + startup._id, startup);
 	}
 
 	deleteStartup(startup: Startup): Observable<boolean> {
 		console.log('Deleting startup: ', startup);
-		return this.http.delete<boolean>('http://localhost:3000/startups/' + startup._id);
+		return this.http.delete<boolean>('https://trakky-services.herokuapp.com/startups/' + startup._id);
 	}
 
 	getStartup(startupID: string) {
-		return this.http.get<Startup>('http://localhost:3000/startups/' + startupID);
+		return this.http.get<Startup>('https://trakky-services.herokuapp.com/startups/' + startupID);
 	}
 
 	getAllStartups(): Observable<Startup[]> {
-		return this.http.get<Startup[]>('http://localhost:3000/startups/');
+		return this.http.get<Startup[]>('https://trakky-services.herokuapp.com/startups/');
 	}
 
 }
