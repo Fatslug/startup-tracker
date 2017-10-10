@@ -53,4 +53,14 @@ table {
 body, html {
 	height: 100%;
 	width: 100%;
+	background-color: #fafafa;
+}
+
+.input-full-width {
+	width: 100%;
+}
+
+/* Padding Classes */
+.padding-10 {
+	padding: 10px;
 }

@@ -1,18 +1,18 @@
-<div style="margin-top: -50px;">
+<div>
 	<form (onSubmit)="login()">
 		<div>
-			<md-form-field>
-				<input mdInput placeholder="Email" name="username" [(ngModel)]="username">
-			</md-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Email" name="username" [(ngModel)]="username">
+			</mat-form-field>
 		</div>
 		<div>
-			<md-form-field>
-				<input mdInput type="password" placeholder="Password" name="password" [(ngModel)]="password">
-			</md-form-field>
+			<mat-form-field>
+				<input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password">
+			</mat-form-field>
 		</div>
 		<div>
-			<button md-raised-button color="primary" type="submit" (click)="login()">Login</button>
-			<!-- <button md-button color="accent" routerLink="/register" routerLinkActive="active">Register</button> -->
+			<button mat-raised-button color="primary" type="submit" (click)="login()">Login</button>
+			<!-- <button mat-button color="accent" routerLink="/register" routerLinkActive="active">Register</button> -->
 		</div>
 	</form>
 </div>

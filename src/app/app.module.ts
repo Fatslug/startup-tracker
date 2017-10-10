@@ -13,10 +13,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 // MATERIAL IMPORTS
 import {
-	MdToolbarModule,
-	MdButtonModule,
-	MdGridListModule,
-	MdInputModule
+	MatToolbarModule,
+	MatButtonModule,
+	MatGridListModule,
+	MatInputModule,
+	MatSelectModule,
+	MatSlideToggleModule,
+	MatCardModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -57,10 +60,13 @@ export const ROUTES: Routes = [
 		FlexLayoutModule,
 
 		// MATERIAL IMPORTS
-		MdToolbarModule,
-		MdButtonModule,
-		MdGridListModule,
-		MdInputModule
+		MatToolbarModule,
+		MatButtonModule,
+		MatGridListModule,
+		MatInputModule,
+		MatSelectModule,
+		MatSlideToggleModule,
+		MatCardModule
 	],
 	providers: [
 		StartupService,

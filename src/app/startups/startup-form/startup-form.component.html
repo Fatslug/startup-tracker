@@ -1,54 +1,69 @@
 <div *ngIf="startup">
 	<form>
-		<label for="companyName">Company Name: </label>
-		<input name="companyName" type="text" [(ngModel)]="startup.companyName" #companyName="ngModel" />
-		<br /><br />
-
-		<label for="fundingStage">Funding Stage: </label>
-		<select name="fundingStage" [(ngModel)]="startup.fundingStage" #fundingStage="ngModel">
-			<option value="Early">Early</option>
-			<option value="Pre-Seed">Pre-Seed</option>
-			<option value="Seed">Seed</option>
-			<option value="Series A">Series A</option>
-			<option value="Series B">Series B</option>
-			<option value="Series C">Series C</option>
-		</select>
-		<br /><br />
-
-		<label for="typeOfTech">Type of Tech: </label>
-		<select name="typeOfTech" [(ngModel)]="startup.typeOfTech" #typeOfTech="ngModel">
-			<option value="Internet of Things">Internet of Things</option>
-			<option value="Mobility">Mobility</option>
-			<option value="Health Tech">Health Tech</option>
-		</select>
-		<br /><br />
-
-		<input type="checkbox" name="engaged" [(ngModel)]="startup.engaged" #engaged="ngModel"/> <label for="engaged"> Has this startup been engaged?</label>
-		<br /><br />
-
-		<label for="summary">Summary of company: </label>
-		<textarea name="summary" [(ngModel)]="startup.summary" #summary="ngModel"></textarea>
-		<br /><br />
-
-		<label for="website">Company Website: </label>
-		<input type="text" name="website" [(ngModel)]="startup.website" #website="ngModel" />
-		<br /><br />
-
-		<label for="potentialApplications">Potential applications for company tech: </label>
-		<div *ngFor="let application of startup.potentialApplications; index as i; last as isLast; first as isFirst">
-			-> <input type="text" name="application--{{ i }}" [(ngModel)]="application.value" #potentialApplications />
-			<button type="button" *ngIf="!isFirst" (click)="removeApplication(i)"> - </button>
-			<button type="button" *ngIf="isLast" (click)="addApplication()"> + </button>
+		<div>
+			<mat-form-field class="input-full-width">
+				<input matInput placeholder="Company Name" name="companyName" [(ngModel)]="startup.companyName" #companyName="ngModel">
+			</mat-form-field>
 		</div>
-		<br /><br />
 
-		<label for="securityLevel">Security Level: </label>
-		<select name="securityLevel" [(ngModel)]="startup.securityLevel" #securityLevel="ngModel">
-			<option value="1">Everyone can see this company</option>
-			<option value="2">Only certain people can see this company</option>
-			<option value="3">Only I can see this company</option>
-		</select>
-		<br /><br />
+		<div>
+			<mat-form-field>
+				<mat-select placeholder="Funding Stage" [(ngModel)]="startup.fundingStage" name="fundingStage" #fundingStage="ngModel">
+						<mat-option value="Early">Early</mat-option>
+						<mat-option value="Pre-Seed">Pre-Seed</mat-option>
+						<mat-option value="Seed">Seed</mat-option>
+						<mat-option value="Series A">Series A</mat-option>
+						<mat-option value="Series B">Series B</mat-option>
+						<mat-option value="Series C">Series C</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-select placeholder="Type of Tech" [(ngModel)]="startup.typeOfTech" name="typeOfTech" #typeOfTech="ngModel">
+					<mat-option value="Internet of Things">Internet of Things</mat-option>
+					<mat-option value="Mobility">Mobility</mat-option>
+					<mat-option value="Artificial Intelligence">Artificial Intelligence</mat-option>
+					<mat-option value="Health">Health</mat-option>
+					<mat-option value="Machine Learning">Machine Learning</mat-option>
+					<mat-option value="New Data Source">New Data Source</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<div fxFlex fxLayoutAlign="center center" class="padding-10">
+			<mat-slide-toggle [checked]="startup.engaged">Startup Engaged</mat-slide-toggle>
+		</div>
+
+		<div>
+			<mat-form-field class="input-full-width">
+				<textarea matInput rows="3" placeholder="Summary of Company" name="summary" [(ngModel)]="startup.summary" #summary="ngModel"></textarea>
+			</mat-form-field>
+		</div>
+
+		<div>
+			<mat-form-field>
+				<input matInput placeholder="Company Website" name="website" [(ngModel)]="startup.website" #website="ngModel">
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-select placeholder="Security Level" [(ngModel)]="startup.securityLevel" name="securityLevel" #securityLevel="ngModel">
+					<mat-option value="1">Everyone can see this company</mat-option>
+					<mat-option value="2">Only certain people can see this company</mat-option>
+					<mat-option value="3">Only I can see this company</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<mat-card>
+			<h2 class="mat-title">Potential applications for company tech: </h2>
+			<div *ngFor="let application of startup.potentialApplications; index as i; last as isLast; first as isFirst">
+				<mat-form-field>
+					<input matInput name="application--{{ i }}" placeholder="Application #{{ i+1 }}" [(ngModel)]="application.value" #potentialApplications>
+				</mat-form-field>
+				<button mat-button color="warn" *ngIf="!isFirst" (click)="removeApplication(i)"> - </button>
+				<button mat-button color="primary" *ngIf="isLast" (click)="addApplication()"> + </button>
+			</div>
+		</mat-card>
 
 		<label for="comments">Comment: </label><br />
 		Title: <input type="text" name="commmentTitle" [(ngModel)]="comment.title" /><br />
