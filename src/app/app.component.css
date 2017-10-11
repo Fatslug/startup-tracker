@@ -9,3 +9,7 @@
     height: 100%;
     margin: 0 auto;
 }
+
+.component-outlet {
+    padding-top: 50px;
+}
