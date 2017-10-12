@@ -1,3 +1,8 @@
-.wide-card {
-    padding: 30px 100px;
+.card__600-wide {
+    width: 600px;
+    /* padding-bottom: 50px; */
+}
+
+.mat-display-2 {
+    margin-bottom: 30px;
 }
