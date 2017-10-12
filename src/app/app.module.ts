@@ -58,8 +58,6 @@ export const ROUTES: Routes = [
 		RouterModule.forRoot(ROUTES),
 		BrowserAnimationsModule,
 		FlexLayoutModule,
-
-		/** MATERIAL DESIGN MODULES */
 		MatToolbarModule,
 		MatButtonModule,
 		MatGridListModule,
