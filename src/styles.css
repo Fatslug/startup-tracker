@@ -59,8 +59,24 @@ body, html {
 .input-full-width {
 	width: 100%;
 }
+.input-half-width {
+	box-sizing: border-box;
+	width: 50%;
+}
 
 /* Padding Classes */
 .padding-10 {
 	padding: 10px;
+}
+.margin__top-10 {
+	margin-top: 10px;
+}
+.margin__top-20 {
+	margin-top: 20px;
+}
+.margin__bottom-10 {
+	margin-bottom: 10px;
+}
+.margin__bottom-20 {
+	margin-bottom: 20px;
 }

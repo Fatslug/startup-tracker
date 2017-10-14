@@ -1,16 +1,19 @@
 <div fxLayout="row">
 	<div fxFlex.lg="30%" fxFlex.md="20%" fxFlex.sm="10%" fxFlex.xs="5%"></div>
 	<div fxFlex.lg="40%" fxFlex.md="60%" fxFlex.sm="80%" fxFlex.xs="90%">
-		<mat-card>
-			<mat-card-header>
-				<mat-card-title>
-						<h1 class="mat-display-2">Add a Startup</h1>
-				</mat-card-title>
-				<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-			</mat-card-header>
-			<mat-card-content>
-				<div *ngIf="startup">
-					<form>
+		<form fxLayout="column">
+			<div fxFlex fxLayoutAlign="start center" class="padding-10">
+				<mat-slide-toggle [checked]="startup.engaged">Startup Engaged</mat-slide-toggle>
+			</div>
+			<mat-card class="margin__top-20 margin__bottom-10">
+				<mat-card-header>
+					<mat-card-title>
+							<h2 class="mat-title">Add a startup</h2>
+					</mat-card-title>
+					<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+				</mat-card-header>
+				<mat-card-content>
+					<div *ngIf="startup">
 						<div>
 							<mat-form-field class="input-full-width">
 								<input matInput placeholder="Company Name" name="companyName" [(ngModel)]="startup.companyName" #companyName="ngModel">
@@ -18,7 +21,13 @@
 						</div>
 
 						<div>
-							<mat-form-field>
+							<mat-form-field class="input-full-width">
+								<textarea matInput rows="3" placeholder="Summary of Company" name="summary" [(ngModel)]="startup.summary" #summary="ngModel"></textarea>
+							</mat-form-field>
+						</div>
+
+						<div fxLayout="row" fxLayoutGap="10px">
+							<mat-form-field fxFlex>
 								<mat-select placeholder="Funding Stage" [(ngModel)]="startup.fundingStage" name="fundingStage" #fundingStage="ngModel">
 										<mat-option value="Early">Early</mat-option>
 										<mat-option value="Pre-Seed">Pre-Seed</mat-option>
@@ -29,7 +38,7 @@
 								</mat-select>
 							</mat-form-field>
 
-							<mat-form-field>
+							<mat-form-field fxFlex>
 								<mat-select placeholder="Type of Tech" [(ngModel)]="startup.typeOfTech" name="typeOfTech" #typeOfTech="ngModel">
 									<mat-option value="Internet of Things">Internet of Things</mat-option>
 									<mat-option value="Mobility">Mobility</mat-option>
@@ -41,22 +50,12 @@
 							</mat-form-field>
 						</div>
 
-						<div fxFlex fxLayoutAlign="center center" class="padding-10">
-							<mat-slide-toggle [checked]="startup.engaged">Startup Engaged</mat-slide-toggle>
-						</div>
-
-						<div>
-							<mat-form-field class="input-full-width">
-								<textarea matInput rows="3" placeholder="Summary of Company" name="summary" [(ngModel)]="startup.summary" #summary="ngModel"></textarea>
-							</mat-form-field>
-						</div>
-
-						<div>
-							<mat-form-field>
+						<div fxLayout="row" fxLayoutGap="10px">
+							<mat-form-field fxFlex>
 								<input matInput placeholder="Company Website" name="website" [(ngModel)]="startup.website" #website="ngModel">
 							</mat-form-field>
 
-							<mat-form-field>
+							<mat-form-field fxFlex>
 								<mat-select placeholder="Security Level" [(ngModel)]="startup.securityLevel" name="securityLevel" #securityLevel="ngModel">
 									<mat-option value="1">Everyone can see this company</mat-option>
 									<mat-option value="2">Only certain people can see this company</mat-option>
@@ -64,9 +63,20 @@
 								</mat-select>
 							</mat-form-field>
 						</div>
-
-						<mat-card>
-							<h2 class="mat-title">Potential applications for company tech: </h2>
+					</div>
+				</mat-card-content>
+				<!-- <mat-card-actions fxLayout fxLayoutAlign="end">
+						<button *ngIf="formType=='add'" (click)="submitStartup()" type="submit">Submit startup</button>
+						<button *ngIf="formType=='update'" (click)="updateStartup()" type="submit">Update startup</button>
+				</mat-card-actions> -->
+			</mat-card>
+			<mat-card class="margin__top-10 margin__bottom-10">
+					<mat-card-title>
+						<h2 class="mat-title">Use cases</h2>
+					</mat-card-title>
+					<mat-card-content>
+						<div>
+							<h2 class="mat-title"> </h2>
 							<div *ngFor="let application of startup.potentialApplications; index as i; last as isLast; first as isFirst">
 								<mat-form-field>
 									<input matInput name="application--{{ i }}" placeholder="Application #{{ i+1 }}" [(ngModel)]="application.value" #potentialApplications>
@@ -74,24 +84,33 @@
 								<button mat-button color="warn" *ngIf="!isFirst" (click)="removeApplication(i)"> - </button>
 								<button mat-button color="primary" *ngIf="isLast" (click)="addApplication()"> + </button>
 							</div>
-						</mat-card>
-
-						<label for="comments">Comment: </label><br />
-						Title: <input type="text" name="commmentTitle" [(ngModel)]="comment.title" /><br />
-						Body: <textarea name="commentBody" [(ngModel)]="comment.body" #commentBody></textarea><br /><br />
-						<div *ngFor="let comment of startup.comments">
-							<h2>{{ comment.title }}</h2>
-							<p>{{ comment.body }}</p>
 						</div>
-						<br /><br />
-					</form>
-				</div>
-			</mat-card-content>
-			<mat-card-actions fxLayout fxLayoutAlign="end">
-					<button *ngIf="formType=='add'" (click)="submitStartup()" type="submit">Submit startup</button>
-					<button *ngIf="formType=='update'" (click)="updateStartup()" type="submit">Update startup</button>
-			</mat-card-actions>
-		</mat-card>
+					</mat-card-content>
+			</mat-card>
+			<mat-card class="margin__top-10 margin__bottom-20">
+					<mat-card-title>
+						<h2 class="mat-title">Comments</h2>
+					</mat-card-title>
+					<mat-card-content>
+						<div>
+							<mat-form-field class="input-full-width">
+								<input matInput placeholder="Comment Title" name="commmentTitle" [(ngModel)]="comment.title" #commentTite="ngModel">
+							</mat-form-field>
+
+							<mat-form-field class="input-full-width">
+								<textarea matInput rows="3" placeholder="Comment Body" name="commentBody" [(ngModel)]="comment.body" #commentBody="ngModel"></textarea>
+							</mat-form-field>
+
+							<br /><br />
+
+							<div *ngFor="let comment of startup.comments">
+								<h2>{{ comment.title }}</h2>
+								<p>{{ comment.body }}</p>
+							</div>
+						</div>
+					</mat-card-content>
+			</mat-card>
+		</form>
 	</div>
 	<div fxFlex.lg="30%" fxFlex.md="20%" fxFlex.sm="10%" fxFlex.xs="5%"></div>
-</div>	
+</div>
