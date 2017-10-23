@@ -28,16 +28,35 @@ import { StartupFormComponent } from './startups/startup-form/startup-form.compo
 import { StartupDetailsComponent } from './startups/startup-details/startup-details.component';
 import { StartupItemComponent } from './startups/startup-item/startup-item.component';
 import { StartupDeleteComponent } from './startups/startup-delete/startup-delete.component';
+import { StartupComponent } from './startups/startup/startup.component';
 
 export const ROUTES: Routes = [
 	{ path: '', component: StartupListComponent, canActivate: [CanActivateAuthGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	{ path: 'startup/:id', component: StartupDetailsComponent, canActivate: [CanActivateAuthGuard] },
-	{ path: 'startups/add', component: StartupFormComponent, canActivate: [CanActivateAuthGuard] },
-	{ path: 'startups/update/:id', component: StartupFormComponent, canActivate: [CanActivateAuthGuard] },
-	{ path: 'startups/delete/:id', component: StartupDeleteComponent, canActivate: [CanActivateAuthGuard] },
-	{ path: 'startups', component: StartupListComponent, canActivate: [CanActivateAuthGuard] }
+	{
+		path: 'startups',
+		component: StartupComponent,
+		canActivate: [CanActivateAuthGuard],
+		children: [
+			{
+				path: '',
+				component: StartupListComponent
+			}, {
+				path: ':id',
+				component: StartupDetailsComponent
+			}, {
+				path: 'add',
+				component: StartupFormComponent
+			}, {
+				path: 'update/:id',
+				component: StartupFormComponent
+			}, {
+				path: 'delete/:id',
+				component: StartupDeleteComponent
+			}
+		]
+	}
 ];
 
 @NgModule({
@@ -49,7 +68,8 @@ export const ROUTES: Routes = [
 		StartupItemComponent,
 		LoginComponent,
 		RegisterComponent,
-		StartupDeleteComponent
+		StartupDeleteComponent,
+		StartupComponent
 	],
 	imports: [
 		BrowserModule,

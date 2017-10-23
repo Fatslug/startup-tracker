@@ -1,7 +1,7 @@
 <div fxLayout="row">
 	<div fxFlex.lg="30%" fxFlex.md="20%" fxFlex.sm="10%" fxFlex.xs="5%"></div>
 	<div fxFlex.lg="40%" fxFlex.md="60%" fxFlex.sm="80%" fxFlex.xs="90%">
-		<form fxLayout="column">
+		<form fxLayout="column" *ngIf="startup">
 			<div fxFlex fxLayoutAlign="start center" class="padding-10">
 				<mat-slide-toggle [checked]="startup.engaged">Startup Engaged</mat-slide-toggle>
 			</div>
@@ -13,7 +13,7 @@
 					<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
 				</mat-card-header>
 				<mat-card-content>
-					<div *ngIf="startup">
+					<div>
 						<div>
 							<mat-form-field class="input-full-width">
 								<input matInput placeholder="Company Name" name="companyName" [(ngModel)]="startup.companyName" #companyName="ngModel">
@@ -65,10 +65,6 @@
 						</div>
 					</div>
 				</mat-card-content>
-				<!-- <mat-card-actions fxLayout fxLayoutAlign="end">
-						<button *ngIf="formType=='add'" (click)="submitStartup()" type="submit">Submit startup</button>
-						<button *ngIf="formType=='update'" (click)="updateStartup()" type="submit">Update startup</button>
-				</mat-card-actions> -->
 			</mat-card>
 			<mat-card class="margin__top-10 margin__bottom-10">
 					<mat-card-title>
@@ -110,6 +106,10 @@
 						</div>
 					</mat-card-content>
 			</mat-card>
+			<div fxFlex fxLayoutAlign="end center" class="padding-10">
+				<button *ngIf="formType=='add'" (click)="submitStartup()" mat-raised-button color="primary" type="submit">Submit startup</button>
+				<button *ngIf="formType=='update'" (click)="updateStartup()" mat-raised-button color="primary" type="submit">Update startup</button>
+			</div>
 		</form>
 	</div>
 	<div fxFlex.lg="30%" fxFlex.md="20%" fxFlex.sm="10%" fxFlex.xs="5%"></div>
