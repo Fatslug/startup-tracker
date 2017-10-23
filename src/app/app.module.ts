@@ -43,11 +43,11 @@ export const ROUTES: Routes = [
 				path: '',
 				component: StartupListComponent
 			}, {
-				path: ':id',
-				component: StartupDetailsComponent
-			}, {
 				path: 'add',
 				component: StartupFormComponent
+			}, {
+				path: 'view/:id',
+				component: StartupDetailsComponent
 			}, {
 				path: 'update/:id',
 				component: StartupFormComponent
