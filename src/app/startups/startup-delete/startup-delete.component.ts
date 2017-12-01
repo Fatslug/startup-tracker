@@ -36,7 +36,7 @@ export class StartupDeleteComponent implements OnInit {
 
 	reject(): void {
 		console.log('Delete rejected');
-		this.router.navigate(['/startups', this.startup._id]);
+		this.router.navigate(['/startups/view', this.startup._id]);
 	}
 
 }

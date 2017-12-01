@@ -1,3 +1,13 @@
-<div *ngFor="let startup of startups">
-	<h1><a [routerLink]="['/startups/view', startup._id]">{{ startup.companyName }}</a></h1> [<a [routerLink]="['/startups/update', startup._id]">Edit</a>]
+<div fxLayout="row">
+	<div fxFlex.lg="30%" fxFlex.md="20%" fxFlex.sm="10%" fxFlex.xs="5%"></div>
+	<div fxFlex.lg="40%" fxFlex.md="60%" fxFlex.sm="80%" fxFlex.xs="90%">
+		<div fxLayout="row" fxLayoutGap="20px">
+			<a *ngFor="let startup of startups" fxFlex [routerLink]="['/startups/view', startup._id]">
+				<mat-card class="mat-elevation-z1">
+					<h1>{{ startup.companyName }}</h1> [<a [routerLink]="['/startups/update', startup._id]">Edit</a>]
+				</mat-card>
+			</a>
+		</div>
+	</div>
+	<div fxFlex.lg="30%" fxFlex.md="20%" fxFlex.sm="10%" fxFlex.xs="5%"></div>
 </div>

@@ -3,14 +3,13 @@
 	<div fxFlex.lg="40%" fxFlex.md="60%" fxFlex.sm="80%" fxFlex.xs="90%">
 		<form fxLayout="column" *ngIf="startup">
 			<div fxFlex fxLayoutAlign="start center" class="padding-10">
-				<mat-slide-toggle [checked]="startup.engaged">Startup Engaged</mat-slide-toggle>
+				<mat-slide-toggle [checked]="startup.engaged" [(ngModel)]="startup.engaged" name="engaged">Startup Engaged</mat-slide-toggle>
 			</div>
 			<mat-card class="margin__top-20 margin__bottom-10">
 				<mat-card-header>
 					<mat-card-title>
 							<h2 class="mat-title">Add a startup</h2>
 					</mat-card-title>
-					<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
 				</mat-card-header>
 				<mat-card-content>
 					<div>
@@ -83,28 +82,27 @@
 						</div>
 					</mat-card-content>
 			</mat-card>
-			<mat-card class="margin__top-10 margin__bottom-20">
-					<mat-card-title>
-						<h2 class="mat-title">Comments</h2>
-					</mat-card-title>
-					<mat-card-content>
-						<div>
-							<mat-form-field class="input-full-width">
-								<input matInput placeholder="Comment Title" name="commmentTitle" [(ngModel)]="comment.title" #commentTite="ngModel">
-							</mat-form-field>
-
-							<mat-form-field class="input-full-width">
-								<textarea matInput rows="3" placeholder="Comment Body" name="commentBody" [(ngModel)]="comment.body" #commentBody="ngModel"></textarea>
-							</mat-form-field>
-
-							<br /><br />
-
-							<div *ngFor="let comment of startup.comments">
-								<h2>{{ comment.title }}</h2>
-								<p>{{ comment.body }}</p>
-							</div>
-						</div>
-					</mat-card-content>
+			<mat-card class="margin__top-10">
+				<mat-card-title>
+					<h2 class="mat-title">Comments</h2>
+				</mat-card-title>
+				<mat-card-content>
+					<div>
+						<!-- <mat-form-field class="input-full-width">
+							<input matInput placeholder="Comment Title" name="commmentTitle" [(ngModel)]="comment.title" #commentTite="ngModel">
+						</mat-form-field> -->
+						<mat-form-field class="input-full-width">
+							<textarea matInput rows="3" placeholder="Comment Body" name="commentBody" [(ngModel)]="comment.body" #commentBody="ngModel"></textarea>
+						</mat-form-field>
+					</div>
+				</mat-card-content>
+			</mat-card>
+			<mat-card class="margin__bottom-20">
+				<div *ngFor="let comment of startup.comments; first as isFirst; last as isLast">
+					<p class="mat-body-2">{{ comment.author.name }}</p>
+					<p class="mat-body-1">{{ comment.body }}</p>
+					<div *ngIf="!isLast"><hr /></div>
+				</div>
 			</mat-card>
 			<div fxFlex fxLayoutAlign="end center" class="padding-10">
 				<button *ngIf="formType=='add'" (click)="submitStartup()" mat-raised-button color="primary" type="submit">Submit startup</button>

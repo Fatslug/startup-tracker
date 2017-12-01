@@ -58,12 +58,15 @@ export class StartupFormComponent implements OnInit {
 	submitStartup(): void {
 		console.log('Submitting startup...');
 		this.startup.author = this.userService.currentUser;
-		this.startup.comments = [];
-		this.startup.comments.push(this.comment);
+		if (this.comment.body !== '') {
+			this.startup.comments = [];
+			this.comment.author = this.userService.currentUser;
+			this.startup.comments.push(this.comment);
+		}
 		this.startupService.addStartup(this.startup).subscribe((result) => {
 			console.log(result);
 			if (result) {
-				this.router.navigate(['/startup', result._id]);
+				this.router.navigate(['/startups/view', result._id]);
 			}
 		});
 	}
@@ -71,11 +74,15 @@ export class StartupFormComponent implements OnInit {
 	updateStartup(): void {
 		console.log('Updating startup...');
 		this.startup.modifiedTimestamp = new Date();
-		this.startup.comments.push(this.comment);
+		if (this.comment.body) {
+			console.log(this.comment.body);
+			this.comment.author = this.userService.currentUser;
+			this.startup.comments.push(this.comment);
+		}
 		this.startupService.updateStartup(this.startup).subscribe((result) => {
 			console.log(result);
 			if (result) {
-				this.router.navigate(['/startup', result._id]);
+				this.router.navigate(['/startups/view', result._id]);
 			}
 		});
 	}

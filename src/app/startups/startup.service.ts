@@ -21,7 +21,7 @@ export class Startup {
 	summary: string;
 	website: string;
 	potentialApplications: object[] = [{ value: '' }];
-	securityLevel: number;
+	securityLevel: string;
 	comments: Comment[];
 	createdTimestamp: Date;
 	modifiedTimestamp: Date;
